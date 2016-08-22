@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>newwindow</title>
+</head>
+
+<body onload="onloadprovince()">
+	
+    	省份：<select id="province" name="province" onChange="cityName(this.selectedIndex)">
+        	<option value="">请选择省名
+            </option>
+            
+       </select><br/><br/>
+        市：<select id="city" name="city" >
+        	<option value="">请选择城市名</option>
+       </select><br/><br/><br/>
+       
+       <input type="button" value="确认"  id="myConfirm" onClick="confirmed()"/>  
+       <input type="button" value="取消" id="myClose" onClick="closed()"/>
+       <script type="text/javascript">
+	   		function getObj(id){
+				return document.getElementById(id);
+			}
+			var city1=["长沙市","株洲市","湘潭市","衡阳市","邵阳市"];
+			var city2=["武汉市","黄石市","宜昌市","荆门市","十堰市"];
+			var city3=["济南市","青岛市","淄博市","枣庄市","烟台市"];
+			var provinceName=["湖南省","湖北省","山东省"];
+			function province(){
+				var e=getObj('province');
+				for(var i=0;i<provinceName.length;i++){
+					e.options.add(new Option(provinceName[i],provinceName[i]));
+				}
+			}
+			function cityName(n){
+				var e=getObj('city');
+				for(var i=e.options.length;i>0;i--){
+					e.remove(i);
+					}
+				if(n==0){
+					return;
+				}
+					
+				var a=eval("city"+n);
+				for(var i=0;i<a.length;i++){
+					e.options.add(new Option(a[i],a[i]));
+				}
+			}
+			function onloadprovince(){
+				province();
+				}
+	   		function confirmed(){
+				var fatherAddress=window.opener.document.getElementById("fatherAddress");
+				fatherAddress.value=document.getElementById("province").value+document.getElementById("city").value;
+				window.returnValue = "1";
+            	window.close();
+			}
+			function closed(){
+				window.close();
+			}
+      </script>
+       
+	
+</body>
+</html>

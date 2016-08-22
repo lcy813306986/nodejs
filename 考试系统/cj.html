@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>成绩</title>
+<style type="text/css">
+  div{
+	  width:400px;
+	  height:400px;
+	  background:url(cj.jpg) no-repeat;
+	  background-size:cover;
+  }
+  #d1{
+	  background:
+	  #FFF;
+	  width:170px;
+	  height:200px;
+	  position:absolute;
+	  top:200px;
+	  left:230px;
+  }
+  b{
+	  font-size:36px;
+  }
+  #s1{
+	  color:#F00;
+	  font-size:100px;
+  }
+</style>
+</head>
+
+<body>
+<div>
+   <div id="d1"><b>总分：</b><br /><strong id="s1"></strong></div>
+</div>
+<script type="text/javascript">
+   (function(){
+	   fen= window.opener.document.getElementById("p1"); 
+	   document.getElementById("s1").innerHTML=fen.value;
+   })();
+</script>
+</body>
+</html>

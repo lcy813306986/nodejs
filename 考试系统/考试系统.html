@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>考试系统</title>
+</head>
+
+<body>
+ <p>系统将会在<strong id="endtime"></strong>秒后计算成绩，请在规定时间内完成&nbsp;提前交卷<input type="button" value="交卷" onClick="submit()" /></p>
+ 总分：<strong id="p1"></strong><hr />
+<script type="text/javascript">
+var questions=[{"question":"中国的首都是？","answer":{"a":"上海","b":"北京","c":"长沙","d":"衡阳"}}, {"question":"湖南的省市是？","answer":{"a":"上海","b":"长沙","c":"北京","d":"衡阳"}},{"question":"南岳在哪个市？","answer":{"a":"上海","b":"衡阳","c":"长沙","d":"北京"}},{"question":"湖南工学院在哪个市？","answer":{"a":"上海","b":"衡阳","c":"长沙","d":"北京"}},{"question":"1+1=？","answer":{"a":"1","b":"2","c":"3","d":"4"}}];
+function showQuestions(){
+	for(var i=0;i<questions.length;i++){
+	    document.write("<span id='q1'>"+(i+1)+"</span>.&nbsp;");
+		document.write("<span id='quest'"+(i+1)+">"+questions[i].question+"</span><br />");
+		document.write("<form id='f1'>");
+		document.write("A&nbsp;<input type='radio' name='ans1' value='a' />"+questions[i].answer.a+"&nbsp;");
+		
+				document.write("B&nbsp;<input type='radio' name='ans1' value='b' />"+questions[i].answer.b+"&nbsp;");
+		
+				document.write("C&nbsp;<input type='radio' name='ans1' value='c' />"+questions[i].answer.c+"&nbsp;");
+		
+				document.write("D&nbsp;<input type='radio' name='ans1' value='d' />"+questions[i].answer.d);
+				document.write("<hr />");
+				document.write("</form>");
+	}
+}
+var time=10;
+function remainTime(){
+	
+	if(time==0){
+		document.getElementById('endtime').innerHTML=0;
+		//window.open("file:///C:/Users/Lenovo/Desktop/cj.html","_balnk","left=300,top=100,width=402,height=403");
+		submit();
+	}else{
+	document.getElementById('endtime').innerHTML=time--;
+	setTimeout("remainTime()",1000);
+	}
+}
+function submit(){
+	
+   var radArr = document.getElementsByName("ans1"); 
+   var radValue=[]; 
+
+    for(var i=0; i<radArr.length; i++){ 
+    if(radArr[i].checked){ 
+     radValue[i]=radArr[i].value; 
+     }
+  
+}
+var fen=0;
+for(i=0;i<radValue.length;i++){
+	if(radValue[i]=="b"){
+		fen=fen+20;
+	}else{
+		fen=fen;
+	}
+}
+  document.getElementById("p1").innerHTML=fen;
+  document.getElementById("p1").value=fen;
+  
+ window.open("cj.html","_balnk","left=300,top=100,width=422,height=403");
+}
+
+
+    remainTime();
+	showQuestions();
+
+</script>
+</body>
+</html>
