@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>clock</title>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	.canvas{
+		margin-left:300px;
+		margin-top:20px;
+		border:solid 1px;
+		background-image:url(../../../%E4%BA%8C%E6%9C%9F%E9%A1%B9%E7%9B%AE/images/1.jpg);
+		border-radius:5px;
+	}
+</style>
+</head>
+
+<body onLoad="main()">
+	<canvas id="canvasid"  class="canvas" width="500px" height="400px">您的浏览器不支持html5</canvas>
+    <script>
+	
+		var Canvas={};
+		Canvas.cxt=document.getElementById("canvasid").getContext("2d");
+		Canvas.Point=function(x,y){
+			this.x=x;
+			this.y=y;
+		};
+		//擦除canvas上所有的图形
+		Canvas.clearCxt=function(){
+			var me=this;
+			var canvas=me.cxt.canvas;
+			me.cxt.clearRect(0,0,canvas.offsetWidth,canvas.offsetHeight);
+		}
+		
+		//时钟
+		Canvas.Clock=function(){
+			var me=Canvas;
+			c=me.cxt;
+			radius=150;
+			scale=20;   //周围边的长度
+			minangle=(1/30)*Math.PI;
+			hourangle=(1/6)*Math.PI;
+			hourHandLength=radius/2;
+			minHandLength=radius/3*2;
+			secHandLength=radius/10*9;
+			center=new me.Point(c.canvas.width/2,c.canvas.height/2);
+		
+		//绘制圆心
+		function drawCenter(){
+			c.save();
+			c.translate(center.x,center.y);
+			c.fillStyle="black";
+			c.beginPath();
+			c.arc(0,0,radius/20,0,2*Math.PI);  //圆心
+			c.closePath();
+			c.fill();
+			c.stroke();
+			c.restore();
+		}
+		
+		
+		function drawBackGround(){
+			c.save();
+			c.translate(center.x,center.y);   //定义2D转换
+			
+			function drawScale(){
+				c.moveTo(radius-scale,0);
+				c.lineTo(radius,0);
+			}
+			
+			c.beginPath();
+			c.arc(0,0,radius,0,2*Math.PI,true);
+			c.closePath();
+			
+			for(var i=1;i<=12;i++){
+				drawScale();
+				c.rotate(hourangle);
+			}
+			
+			
+			c.font="bold 30px impack";
+			c.fillText("3",110,10);
+			c.fillText("6",-7,120);
+			c.fillText("9",-120,10);
+			c.fillText("12",-16,-100);
+			c.stroke();
+			c.restore();
+			
+		}
+		//绘制时针
+		this.drawHourHand=function(h){
+			h=h===0?24:h;
+			
+			c.save();
+			c.translate(center.x,center.y);
+			c.rotate(3/2*Math.PI);
+			
+			c.rotate(h*hourangle);
+			
+			c.beginPath();
+			c.moveTo(0,0);
+			c.lineTo(hourHandLength,0);
+			c.stroke();
+			
+			c.restore();
+			
+		}
+		
+		//绘制分针
+		this.drawMinHand=function(m){
+			m=m===0?60:m;
+			c.save();
+			c.translate(center.x,center.y);
+			c.rotate(3/2*Math.PI);
+			
+			c.rotate(m*minangle);
+			
+			c.beginPath();
+			c.moveTo(0,0);
+			c.lineTo(minHandLength,0);
+			c.stroke();
+			
+			c.restore();
+		}
+		
+		this.drawSecHand=function(s){
+			s=s===0?60:s;
+			c.save();
+			c.translate(center.x,center.y);
+			c.rotate(3/2*Math.PI);
+			
+			c.rotate(s*minangle);
+			
+			c.beginPath();
+			c.moveTo(0,0);
+			c.lineTo(secHandLength,0);
+			c.stroke();
+			
+			c.restore();
+		}
+		
+		this.drawClock=function(){
+			var me=this;
+			function draw(){
+				var date=new Date();
+				Canvas.clearCxt();
+				drawBackGround();
+				drawCenter();
+				me.drawHourHand(date.getHours()+date.getMinutes()/60);
+				me.drawMinHand(date.getMinutes()+date.getSeconds()/60);
+				me.drawSecHand(date.getSeconds());
+			}
+			draw();
+			setInterval(draw,1000);
+		}
+		}
+		
+		var main=function (){
+			var clock=new Canvas.Clock();
+			clock.drawClock();
+		}
+	
+    </script>
+</body>
+</html>

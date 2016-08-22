@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="cancavs" width="600" height="600">该浏览器不支持该功能</canvas>
+<script>
+	var canvas=document.getElementById("cancavs");
+	var context=canvas.getContext("2d");
+	
+	var grd=context.createLinearGradient(100,120,400,400);
+	
+	grd.addColorStop(0,"red");
+	grd.addColorStop(0.2,"yellow");
+	grd.addColorStop(0.6,"lime");
+	grd.addColorStop(1,"blue");
+	context.fillStyle=grd;
+	/*context.fillRect(100,120,200,200);*/
+	context.font="98px 华文行楷";
+	context.strokeStyle=grd;
+	context.strokeText("源辰24班",100,120);
+</script>
+</body>
+</html>

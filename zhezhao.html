@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>zhezhao</title>
+<script src="../../BOM/leichuyinglib.js"></script>
+<style>
+	.bottom ul{
+		display:block;
+		margin-left:245px;
+	}
+	.bottom ul li{
+		float:left;
+		margin:10px;
+		list-style:none;
+	}
+	#top0{
+		height:400px;
+		width:100%;
+		background:url(images/1.jpg) -300px;
+		mask:url(images/mask.png) -315px;
+		-webkit-mask:url(images/mask.png) -315px;
+		transition:1s linear;
+		-webkit-transition:1s linear;
+	}
+	.border{
+		
+		display:inline-block;
+		width:142px;
+		height:65px;
+		border:2px solid #ff780d;
+		background:url(images/arrow_on.png) no-repeat 65px 0px;
+		position:absolute;
+		left:22%;
+		top:65%;
+		transition:0.5s linear;
+		-webkit-transition:0.5s linear;
+		-moz-transition:0.5s linear;
+		-0-transition:0.5s linear;
+	}
+</style>
+</head>
+
+<body>
+	<div id="top0"> 
+   	</div>
+    
+    
+	<div class="bottom">
+    	<ul>
+        	<li><img src="images/smail_1.gif" alt="图片1"/></li>
+            <li><img src="images/smail_2.gif" alt="图片2"/></li>
+            <li><img src="images/smail_3.gif" alt="图片3"/></li>
+            <li><img src="images/smail_4.gif" alt="图片4"/></li>
+            <li><img src="images/smail_5.gif" alt="图片4"/></li>
+            <div class="border" id="border"></div>
+        </ul>
+    </div>
+    <script>
+		var lis=document.getElementsByTagName("li");
+		var top0=document.getElementById("top0");
+		var border=document.getElementById("border");
+		for(var i=0;i<lis.length;i++){
+			
+			(function(index){
+				lis[index].onclick=function(){
+					top0.style.backgroundImage='url(images/'+(index+1)+'.jpg)';
+					border.style.left=this.offsetLeft+"px";	
+				}
+			})(i);
+		}
+		
+    </script>
+    
+    
+</body>
+</html>

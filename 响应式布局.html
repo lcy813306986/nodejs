@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	 *{
+		 padding:0px;
+		 list-style:none;
+	}
+	.Middle{
+		color:#C33;
+		}
+	.Middle ul{
+		}
+	.Middle ul li{
+		text-align:center;
+		line-height:50px;
+	}
+	.Bottom span{
+		display:block;
+		text-align:center;
+	}
+	.Bottom img{
+			border-radius:5px;
+		}
+	
+	}
+	@media screen and (max-width:400px){
+		.Bottom hr{
+			color:#CCC;
+			width:35%;
+		}
+		
+	}
+	@media screen and (min-width:400px) and (max-width:800px){
+		.Top img{
+			width:100%;
+		}
+		.Middle{
+			width:100%;
+			
+		}
+		
+		.Middle ul li{
+			margin-left:5%;
+			width:25%;
+			height:50px;
+			float:left;
+			border-bottom:1px solid #CCC;
+			border-top:1px solid #CCC;
+		}
+		.Bottom{
+			margin-top:100px;
+		}
+		.Bottom img{
+			width:45%;
+		}
+		.Bottom hr{
+			color:#CCC;
+			width:35%;
+		}
+		.one{
+			margin-left:0px;
+		}
+		.two{
+			margin-right:90px;
+		}
+	}
+	@media screen and (min-width:800px) and (max-width:1300px){
+		.Top img{
+			width:40%;
+		}
+		.Middle{
+			width:40%;
+			margin-left:20px;
+		}
+		.Middle ul li{
+			width:100%;
+			float:left;
+			border-bottom:1px solid #CCC;
+		}
+		.Bottom{
+			width:55%;
+			float:right;
+			margin-top:-200px;
+		}
+		.Bottom hr{
+			color:#CCC;
+			width:20%;
+		}
+		.Bottom img{
+			width:45%;
+		}
+		.one{
+			margin-left:3px;
+		}
+		.two{
+			margin-right:90px;
+		}
+	}
+	@media screen and (min-width:1300px){
+		.Top{
+			float:left;
+		}
+		.Middle{
+			width:70%;
+			float:left;
+		}
+		.Middle ul{
+			display:block;
+		}
+		.Middle ul li{
+			display:block;
+			width:20%;
+			height:50px;
+			float:left;
+			margin-left:100px;
+			border-bottom:1px solid #CCC;
+			border-top:1px solid #CCC;
+		}
+		.Bottom{
+			margin-top:40px;
+			width:70%;
+			float:right;
+		}
+		.Bottom img{
+			width:30%;
+		}
+		.Bottom hr{
+			color:#CCC;
+			width:35%;
+		}
+		.one{
+			margin-left:0px;
+		}
+		.two{
+			margin-right:90px;
+		}
+</style>
+</head>
+
+<body>
+	<div class="Top">
+    	<img src="../8.18/images/logo.jpg" alt="这是Logo"/>
+    </div>
+    
+    <div class="Middle">
+    	<ul>
+        	<li>名字来历</li>
+            <li>北国雾凇</li>
+            <li>风光图片集</li>
+        </ul>
+   	</div>
+    
+    <div class="Bottom">
+    	
+    	<span>图片风光集</span>
+        <hr class="one"/> <hr class="two"/>
+    	<img src="images/Scene1.jpg" alt="图片1"/>
+        <img src="images/Scene2.jpg" alt="图片2"/>
+        <img src="images/Scene3.jpg" alt="图片3"/>
+        <img src="images/Scene4.jpg" alt="图片4"/>
+        <img src="images/Scene5.jpg" alt="图片5"/>
+        <img src="images/Scene6.jpg" alt="图片6"/>
+    </div>
+</body>
+</html>
