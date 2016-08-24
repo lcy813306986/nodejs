@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	#wrap{
+		width:300px;
+		height:500px;
+		border:1px solid #000;
+		margin:70px auto;
+		overflow:hidden;
+	}
+	#gameContent{
+		width:600px;
+		height:500px;
+		background:#6C9;
+		background-size:300px 500px;
+		position:relative;
+		left:0px;
+	}
+	#hero{
+		width:40px;
+		height:40px;
+		background-color:rgba(233,2,2,0.7);
+		position:absolute;
+		left:0px;
+		bottom:200px;
+	}
+	#leftdiv{
+		width:80px;
+		height:200px;
+		background:black;
+		position:absolute;
+		bottom:0px;
+	}
+	#middlediv{
+		width:80px;
+		height:200px;
+		background:black;
+		position:absolute;
+		bottom:0px;
+		left:200px;
+		
+	}
+	#stick{
+		width:0px;
+		height:6px;
+		background-color:green;
+		position:absolute;
+		left:40px;
+		bottom:200px;
+		transform:rotate(-90deg);
+		transform-origin:0 6px;
+	}
+	#rightdiv{
+		width:80px;
+		left:400px;
+		height:200px;
+		background:black;
+		position:absolute;
+		bottom:0;
+	}
+	#grade{
+		width:100px;
+		font-size:40px;
+		margin:0 auto;
+	}
+</style>
+</head>
+
+<body>
+	<p id="grade">0</p>
+	<div id="wrap">
+    	<div id="gameContent">
+        	<div id="leftdiv"></div>
+            <div id="middlediv"></div>
+            <div id="rightdiv"></div>
+            <div id="hero"></div>
+            <div id="stick"></div>
+        </div>
+    </div>
+    
+    <script>
+
+		var timer=null;
+		var onoff=true;
+		var temp=0;
+		var num=0;
+		var stick=document.getElementById("stick");
+		var hero=document.getElementById("hero");
+		var gameContent=document.getElementById("gameContent");
+		var middlediv=document.getElementById("middlediv");
+		var leftdiv=document.getElementById("leftdiv");
+		var rightdiv=document.getElementById("rightdiv");
+		
+		var grade=document.getElementById("grade");
+		
+		middlediv.style.width=createNum(40,80)+"px";
+		middlediv.style.left=createNum(80,220)+"px";
+		
+		document.onmousedown=function(){
+			timer=setInterval(function(){
+			num+=2;
+			stick.style.width=num+"px";
+			},20)
+		}
+		
+		document.onmouseup=function(){
+			clearInterval(timer);
+			//得到居左的距离
+			middleLeft=middlediv.offsetLeft;
+			next=createNext();
+			
+			rightdiv.style.width=next[0]+"px";
+			rightdiv.style.left=next[1]+"px";
+			
+			
+			stick.style.transition="0.5s";
+			stick.style.transform="rotate(0deg)";
+			
+			if(num<middlediv.offsetLeft-40||num>middlediv.offsetLeft+middlediv.offsetWidth-40){
+				onoff=false;
+			}
+		}
+		
+		stick.addEventListener("transitionend",function(){
+			if(onoff){
+				hero.style.transition="1s";
+				hero.style.left=middlediv.offsetLeft+"px";
+			}else{
+				alert("游戏失败");
+			}
+		});
+		
+		hero.addEventListener("transitionend",function(event){
+			
+				gameContent.style.transition="1s";
+				gameContent.style.left=-middlediv.offsetLeft+"px";
+				temp=1;
+				event.stopPropagation();
+				grade.innerHTML=parseInt(grade.innerHTML)+(100-middlediv.offsetWidth);
+		});
+		
+		gameContent.addEventListener("transitionend",function(){
+			if(temp==1){
+				//还原屏幕
+				gameContent.style.transition="none";
+				gameContent.style.left=0;
+				hero.style.transition="none";
+				hero.style.left=0;
+				stick.style.transition="none";
+				stick.style.width=0;
+				stick.style.transform="rotate(-90deg)";
+				
+				//移动以后，主角的所站的div要改成中间那个
+				leftdiv.style.width=middlediv.offsetWidth+"px";
+				
+				middlediv.style.width=next[0]+"px";
+				middlediv.style.left=next[1]-middleLeft+"px";
+				num=0;
+				temp=0;
+			}
+		});
+		
+		function createNum(start,end){
+			return parseInt(Math.random()*(end-start)+start);
+		}
+		
+		function createNext(){
+			var iWidth=createNum(40,80);
+			var iLeft=createNum(300,220+middleLeft);
+			return [iWidth,iLeft];
+		}
+    </script>
+</body>
+</html>
