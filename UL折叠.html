@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{
+		list-style:none;
+		}
+	ul li{
+		position:relative;
+	}
+	ul li ul{
+		display:block; 
+		}
+</style>
+</head>
+
+<body>
+	<ul>
+    	<li id="myli" onClick="show1()">文学艺术
+       		<ul id="myul" style=" display:none; ">
+            	<li>先锋写作</li>
+                <li>小说散文</li>
+                <li>诗词风韵</li>
+            </ul>
+        </li>
+        <li  id="myli" onClick="show2()">贴吧图区
+        	<ul id="myul2" style=" display:none;">
+            	<li>真我风采</li>
+                <li>视频贴去</li>
+                <li>flash动画</li>
+            </ul>
+        </li>
+        <li id="myli" onClick="show3()">房产论坛
+        	<ul id="myul3" style="display:none;">
+            	<li>我要买房</li>
+                <li>楼市话题</li>
+                <li>二手市场</li>
+            </ul>
+        </li>
+        <li id="myli" onClick="show4()">娱乐八卦
+        	<ul id="myul4" style="display:none;">
+            	<li>你</li>
+                <li>是</li>
+                <li>猪</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+		function show1(){
+			var myul=document.getElementById("myul");
+			if( myul.style.display=="block"){
+				myul.style.display="none";
+			}else{
+				myul.style.display="block";
+				}
+			}
+		function show2(){
+			var myul=document.getElementById("myul2");
+			if( myul.style.display=="block"){
+				myul.style.display="none";
+			}else{
+				myul.style.display="block";
+				}
+			}
+		function show3(){
+			var myul=document.getElementById("myul3");
+			if( myul.style.display=="block"){
+				myul.style.display="none";
+			}else{
+				myul.style.display="block";
+				}
+			}
+		function show4(){
+			var myul=document.getElementById("myul4");
+			if( myul.style.display=="block"){
+				myul.style.display="none";
+			}else{
+				myul.style.display="block";
+				}
+			}
+		
+    </script>
+</body>
+</html>

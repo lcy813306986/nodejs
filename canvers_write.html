@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas</title>
+<style type="text/css">
+	*{
+		padding:0px;
+		margin:0px auto;
+	}
+	#canvas{
+		margin:0px auto;
+		display:block;
+	}
+</style>
+</head>
+
+<body>
+	<input type="button" value="调节大小"  onClick="big()" /><br/>
+    <input type="button" value="调节颜色" /><br/>
+    <input type="button" value="橡皮擦"  onClick="eraser()" /><br/>
+    
+	<canvas id="canvas">
+    	您的游览器不支持canvas,请更新浏览器
+    </canvas>
+    <script>
+		//定义画布大小
+		var canvasWidth=600;
+		var canvasHeight=canvasWidth;
+		//定义变量
+		var flag=false;
+		var lastLoc={x:0,y:0};
+		//得到context
+		var canvas=document.getElementById("canvas");
+		var context=canvas.getContext("2d");
+		
+		//设置canvas大小
+		canvas.width=canvasWidth;
+		canvas.height=canvasHeight;
+		//开始绘制
+		draw();
+		function draw(){
+			context.save();
+			//这一段是canvas的属性，只会在这一段起作用
+			//定义画布的颜色
+			context.strokeStyle="rgb(255,0,0)";
+			//开始绘制路线/路径
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(canvasWidth,0);
+			context.lineTo(canvasWidth,canvasHeight);
+			context.lineTo(0,canvasHeight);
+			//绘制路径结束
+			context.closePath();
+			//绘制画布的粗细
+			context.lineWidth=6;
+			context.stroke();
+			//显示在画布里面
+	
+			
+			context.beginPath();
+			context.moveTo(canvasWidth/2,0);
+			context.lineTo((canvasWidth/2),canvasHeight);
+			
+		
+			context.moveTo(0,canvasHeight/2);
+			context.lineTo(canvasWidth,canvasHeight/2);
+			
+			
+			context.moveTo(0,0);
+			context.lineTo(canvasWidth,canvasHeight);
+			
+			
+			context.moveTo(0,canvasHeight);
+			context.lineTo(canvasWidth,0);
+			
+			
+			context.lineWidth=1;
+			context.stroke();
+			context.restore();
+		}
+		
+		canvas.onmousedown=function(e){
+			delDefault(e);
+			flag=true;
+			lastLoc=windowToCanvas(e.clientX,e.clientY);
+			
+		}
+		canvas.onmouseup=function(e){
+			delDefault(e);
+			flag=false;
+		}
+		canvas.onmousedout=function(e){
+			delDefault(e);;
+			flag=false;
+		}
+	
+		canvas.onmousemove=function(e){
+			delDefault(e);
+			if(flag){
+				var curLoc=windowToCanvas(e.clientX,e.clientY);
+				context.beginPath();
+				context.moveTo(lastLoc.x,lastLoc.y);
+				context.lineTo(curLoc.x,curLoc.y);
+				context.strokeStyle="rgb(220,0,0)";
+				context.lineWidth=30;
+				context.lineCap="round";
+				context.lineJoin="round";
+				context.closePath();
+				context.stroke();
+				lastLoc=curLoc;
+			}
+			
+		}
+		
+		//取消事件的默认行为
+		
+		function delDefault(event){
+			if(window.event){
+				e=window.event;
+				e.returnValue=false;
+				e.preventDefault();
+			}else{
+				e=event;
+				e.preventDefault();
+			}
+		}
+		//坐标转换
+		function windowToCanvas(x,y){
+			var box=canvas.getBoundingClientRect();
+			return {x:Math.floor(x-box.left),y:Math.floor(y-box.top)};
+		}
+		function big(){
+			var b=prompt("请输入这个笔的大小");
+			canvas.onmousemove=function(e){
+			delDefault(e);
+			if(flag){
+				var curLoc=windowToCanvas(e.clientX,e.clientY);
+				context.beginPath();
+				context.moveTo(lastLoc.x,lastLoc.y);
+				context.lineTo(curLoc.x,curLoc.y);
+				context.strokeStyle="rgb(220,0,0)";
+				context.lineWidth=b;
+				context.lineCap="round";
+				context.lineJoin="round";
+				context.closePath();
+				context.stroke();
+				lastLoc=curLoc;
+			}
+			
+		}
+		}
+		function eraser(){
+			
+			canvas.onmousemove=function(e){
+			delDefault(e);
+			if(flag){
+				var curLoc=windowToCanvas(e.clientX,e.clientY);
+				context.beginPath();
+				context.moveTo(lastLoc.x,lastLoc.y);
+				context.lineTo(curLoc.x,curLoc.y);
+				context.strokeStyle="rgb(255,255,255)";
+				context.lineWidth=30;
+				context.lineCap="round";
+				context.lineJoin="round";
+				context.closePath();
+				context.stroke();
+				lastLoc=curLoc;
+			}
+			
+		}
+		}
+    </script>
+</body>
+</html>

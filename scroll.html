@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>下拉框</title>
+<style type="text/css">
+	*{
+		padding:0px;
+		margin:0px auto;
+	}
+	#bigdiv{
+		width:200px;
+		height:300px;
+		border:1px solid #ccc;
+		margin-top:20px;
+		overflow:scroll;
+		
+	}
+
+	li{
+		list-style:none;
+		text-align:center;
+	}
+	#myp{
+		width:100%;
+		height:20px;
+		color:#06C;
+	}
+	#myp p{
+		text-align:center;
+	}
+</style>
+</head>
+
+<body>
+	<div id="bigdiv">
+    	<div id="mycontent">
+        	<ul>
+            	<li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+                <li>item1-item-1-itemt1</li>
+            </ul>    
+        </div>
+            <div id="myp" style="display:none;" >
+            	<p>加载中，请稍后....</p>
+            </div>
+    </div>
+    <script type="text/javascript">
+		var obj=document.getElementById("bigdiv");
+		obj.onscroll=function(){
+			var scrollH=obj.scrollHeight;    //整个区域
+			var scrollT=obj.scrollTop;   //隐藏的部分
+			var clientH=obj.clientHeight;    //可见内容区
+			//console.log("scrollHeight"+scrollH+"scrollTop"+srcollT+"clientHeight"+clientH);
+			if(scrollH==scrollT+clientH){
+				var sh=document.getElementById("myp");
+				sh.style.display="block";
+				window.setTimeout("frush()",1000);
+				
+			}
+		}
+		function  frush(){
+			var newdiv=document.createElement("div");
+			var newul=document.createElement("ul");
+			for(var i=0; i<16;i++){
+				var newli=document.createElement("li");
+				newli.innerHTML="scol1-srcol1-srol1";
+				newul.appendChild(newli);
+				
+			}
+			newdiv.appendChild(newul);
+			var sh=document.getElementById("myp");
+			obj.insertBefore(newdiv,sh);
+		}
+    </script>
+</body>
+</html>
