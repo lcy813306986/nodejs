@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>疯狂动物城三</title>
+<style type="text/css">
+	*{
+		padding:0px;
+		margin:0px auto;
+		}
+	li{
+		list-style:none;
+		}
+	ul{
+
+		margin-left:100px;
+		}
+	ul li{
+		font-size:14px;
+		display:block;
+		width:200px;
+		height:40px;
+		text-align:center;
+		float:left;
+		border:1px solid #CCC;
+		line-height:40px;
+		
+		
+}
+	div{
+		width:1010px;
+		height:600px;
+		margin-left:100px;
+		float:left;		
+	}
+	#pic1{
+		background:url(img/1.jpg) no-repeat;
+		background-size:cover;
+		
+	}
+	#pic2{
+		background:url(img/2.jpg) no-repeat;
+		display:none;
+		background-size:cover;
+	}
+	#pic3{
+		background:url(img/3.jpg) no-repeat;
+		display:none;
+		background-size:cover;
+	}
+	#pic4{
+		background:url(img/4.jpg) no-repeat;
+		display:none;
+		background-size:cover;
+	}
+	#pic5{
+		background:url(5.jpg) no-repeat;
+		display:none;
+		background-size:cover;
+		
+	}
+	
+</style>
+</head>
+
+<body>
+	<ul>
+    	<li onClick="show('pic1')">疯狂动物城-狮子</li>
+        <li onClick="show('pic2')">疯狂动物城-树懒</li>
+        <li onClick="show('pic3')">疯狂动物城-兔子</li>
+        <li onClick="show('pic4')">疯狂动物城-狐狸</li>
+        <li onClick="show('pic5')">疯狂动物城-仓鼠</li>
+    </ul>
+    <div id="pic1"></div>
+    <div id="pic2"></div>
+    <div id="pic3"></div> 
+    <div id="pic4"></div> 
+    <div id="pic5"></div>
+    <script>
+	
+	 function getStyle(obj,attr){
+		 if(obj.currentStyle){
+			 return boj.currentStyle[attr];
+		}else{
+			return getComputedStyle(obj,false)[attr];
+			
+		}
+	}
+    	function show(i){
+        	for(var n=1;n<=5;n++){	
+        	if(("pic"+n)==i){
+				document.getElementById(i).style.display='block';
+            }else{
+				document.getElementById("pic"+n).style.display='none';
+			}
+        	}
+        }
+	</script>
+</body>
+</html>
