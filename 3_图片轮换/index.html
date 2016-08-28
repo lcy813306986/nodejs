@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>图片轮换</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.8.0.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <div class="maintype_left">
+        <div class="scroll_mid">
+            <img src="images/dd_scroll_1.jpg" id="dd_scroll" />
+            <ul id="scroll_number">
+                <li onMouseMove="show(1)" onMouseOut="start()">1</li>
+                <li onMouseMove="show(2)" onMouseOut="start()">2</li>
+                <li onMouseMove="show(3)" onMouseOut="start()">3</li>
+                <li onMouseMove="show(4)" onMouseOut="start()">4</li>
+                <li onMouseMove="show(5)" onMouseOut="start()">5</li>
+                <li onMouseMove="show(6)" onMouseOut="start()">6</li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/jscript">
+		//$(function(){
+//			$('ul li').mouseover(function(){
+//					//$(this).parent().prev().append("<img src='images/dd_scroll_'"+$(this).text()+"'.jpg'/>");
+//					//$("#dd_scroll")[0].src="images/dd_scroll_"+$(this).text()+".jpg";
+//					$("#dd_scroll").attr("src","images/dd_scroll_"+$(this).text()+".jpg");
+//			})
+//		});
+
+	var index=0;
+	var myinterval;
+	function show(id){
+		if( Number(id)){
+			index=id;
+			clearInterval(myinterval);
+			
+		}else{
+			index=index%6+1;
+		}
+		var picName="images/dd_scroll_"+index+".jpg";
+		$("#dd_scroll").attr("src",picName);
+		$("#scroll_number>li").attr("class","scroll_number_out");
+		$("#scroll_number>li").eq(index-1).addClass("scroll_number_over");
+		
+	}
+	function start(){
+		myinterval=setInterval("show()",1000);
+	}
+	myinterval=setInterval("show()",1000);
+	
+	
+    </script>
+</body>
+</html>
