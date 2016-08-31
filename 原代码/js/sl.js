@@ -3,6 +3,7 @@
 		var sWidth=$(id).width();
 		var len=$(id).find("ul li").length;
 		var index=0;
+		var picTimer;
 		var btn="<div class='bthBg'></div><div class='btn'>";
 		for(var i=0;i<len;i++){
 			var ii=i+1;
@@ -40,6 +41,19 @@
 			}
 			showPic(index);
 		});	
+		
+		$(id).hover(function(){
+			 	clearInterval(picTimer);
+			},function(){
+				picTimer=setInterval(function(){
+					showPic(index);
+					index++;
+					if(index==len){
+						index=0;
+					}
+					
+				},1000);
+			}).trigger("mouseout");
 			
 			function showPic(index){
 				var nowLeft=-index*sWidth;
